@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  accrapiservices:
+    container_name: accr-api-prod
+    ports:
+      - 8094:8080
+    volumes:
+      - /var/log/accr-api-prod:/app/log
+    environment:
+      - TZ=Asia/Tbilisi
+      - ASPNETCORE_ENVIRONMENT=Production
+      - VIRTUAL_HOST=accr-api-prod.rabitabank.com      
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: bridge
+    image: accr-api-prod
+    restart: always
